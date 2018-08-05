@@ -93,7 +93,7 @@ class tax(object):
 			tax_pay = tax_base * 0.35 - 5505
 		else:
 			tax_pay = tax_base * 0.45 - 13505
-		return tax_pay
+		return format(tax_pay,'.2f')
 
 ##write to csv
 class w_csv(object):
@@ -104,8 +104,9 @@ class w_csv(object):
 	def w_to(self,w_data,w_file):
 			open_w = open(w_file,'a',newline='')
 			csv_w = csv.writer(open_w)
-			csv_w.writer(w_data)
-	#		w_file.close()
+			csv_w.writerow(w_data)
+			open_w.close()
+
 		
 
 if __name__ == '__main__':
@@ -133,6 +134,6 @@ if __name__ == '__main__':
 		user_jse = float(user_sq) - float(user_sb)
 		user_js = tax(user_jse).tax_pay 
 		user_sh = float(user_sq) - float(user_sb) - float(user_js)
-		user_data_out = key + ',' + str(user_sq) + ',' + str(user_sb) + ',' + str(user_js) + ',' + str(user_sh)
-		print(user_data_out)
-		w_csv(123,'list.csv').w_to
+		user_sh = format(user_sh,'.2f')
+		user_data_out = (key,user_sq,user_sb,user_js,user_sh)
+		w_csv(user_data_out,out_file).w_to
