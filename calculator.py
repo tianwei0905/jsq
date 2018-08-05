@@ -94,8 +94,15 @@ class tax(object):
 		else:
 			tax_pay = tax_base * 0.45 - 13505
 		return tax_pay
-		
 
+##write to csv
+class w_csv(w_data)
+	def __init__(self,w_data,file_name):
+		self.w_data = w_data
+		self.w_file = file_name
+	def w_to(w_data,w_file):
+			open_w = open(w_file,'a',newline='')
+			csv_w = csv.wirter(w_data)
 	
 		
 
@@ -125,4 +132,4 @@ if __name__ == '__main__':
 		user_js = tax(user_jse).tax_pay 
 		user_sh = float(user_sq) - float(user_sb) - float(user_js)
 		user_data_out = key + ',' + str(user_sq) + ',' + str(user_sb) + ',' + str(user_js) + ',' + str(user_sh)
-		print(user_data_out)
+		w_csv(user_data_out,out_file).w_to
