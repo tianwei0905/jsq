@@ -96,14 +96,16 @@ class tax(object):
 		return tax_pay
 
 ##write to csv
-class w_csv(w_data)
+class w_csv(object):
 	def __init__(self,w_data,file_name):
 		self.w_data = w_data
 		self.w_file = file_name
-	def w_to(w_data,w_file):
+		w_out = self.w_to(self.w_data,self.w_file)
+	def w_to(self,w_data,w_file):
 			open_w = open(w_file,'a',newline='')
-			csv_w = csv.wirter(w_data)
-	
+			csv_w = csv.writer(open_w)
+			csv_w.writer(w_data)
+	#		w_file.close()
 		
 
 if __name__ == '__main__':
@@ -132,4 +134,5 @@ if __name__ == '__main__':
 		user_js = tax(user_jse).tax_pay 
 		user_sh = float(user_sq) - float(user_sb) - float(user_js)
 		user_data_out = key + ',' + str(user_sq) + ',' + str(user_sb) + ',' + str(user_js) + ',' + str(user_sh)
-		w_csv(user_data_out,out_file).w_to
+		print(user_data_out)
+		w_csv(123,'list.csv').w_to
